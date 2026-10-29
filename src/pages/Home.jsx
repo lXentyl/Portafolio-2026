@@ -10,5 +10,5 @@ import LinkedIn from "../components/LinkedIn";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  return <><Navbar /><main id="main-content"><Hero /><About /><Skills /><Projects /><Experience /><Certifications /><LinkedIn /><Contact /></main><Footer /></>;
+  return <><Navbar /><main id="main-content"><Hero /><Projects /><About /><Skills /><Experience /><Certifications /><LinkedIn /><Contact /></main><Footer /></>;
 }

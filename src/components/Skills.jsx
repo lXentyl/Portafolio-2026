@@ -33,10 +33,10 @@ export default function Skills() {
           <p className="section-description">Lo que aplico en mis proyectos y en mi experiencia profesional.</p>
         </Reveal>
         <div className="technical-skills-grid">
-          {skillGroups.map(({ number, title, icon, description, items }) => {
+          {skillGroups.map(({ number, title, icon, description, items }, index) => {
             const Icon = icon;
             return (
-            <Reveal as="article" className="technical-skill-group" key={number}>
+            <Reveal as="article" className="technical-skill-group" delay={index * 90} key={number}>
               <div className="capability-top"><Icon size={26} /><span>{number}</span></div>
               <h3>{title}</h3>
               <p>{description}</p>

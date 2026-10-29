@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { projects } from "../data/projects";
 import { IconGithub, IconCode } from "./Icons";
 import Reveal from "./Reveal";
+import { caseStudies } from "../data/caseStudies";
 
-const featuredNames = ["Living Life", "Madera & Sal", "Baramos Ingeniería SRL"];
+const featuredNames = ["Living Life", "Madera & Sal", "GymAI"];
 const selected = featuredNames.map((name) => projects.find((project) => project.title === name));
 const moreProjects = projects.filter((project) => !featuredNames.includes(project.title));
 
@@ -15,6 +16,22 @@ function ProjectLinks({ project }) {
   return <div className="project-links">
     {project.link && <a className="text-link" href={project.link} target="_blank" rel="noreferrer" aria-label={`Visitar ${project.title}`}>Ver sitio <span aria-hidden="true">↗</span></a>}
     {project.repo && <a className="code-link" href={`https://github.com/lXentyl/${project.repo}`} target="_blank" rel="noreferrer" aria-label={`Ver código de ${project.title}`}><IconGithub size={16} /> Código</a>}
+  </div>;
+}
+
+function CaseStudy({ project }) {
+  const study = caseStudies[project.title];
+  return <details className="case-study">
+    <summary>Explorar el caso <span aria-hidden="true">+</span></summary>
+    <dl><div><dt>Objetivo</dt><dd>{study.objective}</dd></div><div><dt>Solución técnica</dt><dd>{study.approach}</dd></div><div><dt>Qué puedes explorar</dt><dd>{study.result}</dd></div></dl>
+  </details>;
+}
+
+function AppFlow() {
+  return <div className="app-flow" role="img" aria-label="Esquema funcional de GymAI: entrenamiento y nutrición, seguimiento del progreso y asistencia con IA">
+    <p className="eyebrow">GymAI · Esquema funcional</p><h4>Del registro al progreso.</h4>
+    <ol><li><span>01</span><div><strong>Entrenamiento y nutrición</strong><p>Registro de actividad</p></div></li><li><span>02</span><div><strong>Progreso</strong><p>Consulta y seguimiento</p></div></li><li><span>03</span><div><strong>Asistencia con IA</strong><p>Apoyo durante el recorrido</p></div></li></ol>
+    <p className="flow-caption">Representación de funcionalidades</p>
   </div>;
 }
 
@@ -37,11 +54,12 @@ export default function Projects() {
         </Reveal>
         <Reveal as="article" className="featured-project feature-living">
           <div className="feature-copy">
-            <p className="eyebrow">01 / Marca & experiencia web</p>
+            <p className="eyebrow">01 / Proyecto personal · Moda y lookbook</p>
             <h3>Living Life.<br /><span>Actitud en cada detalle.</span></h3>
             <p>{selected[0].desc}</p>
             <div className="tech-line">React <span>·</span> Vite <span>·</span> Framer Motion</div>
             <ProjectLinks project={selected[0]} />
+            <CaseStudy project={selected[0]} />
           </div>
           <button type="button" className="feature-browser preview-button" onClick={() => showPreview(selected[0], "/projects/living-life.jpg")} aria-label="Ampliar captura de Living Life">
             <div className="browser-bar" aria-hidden="true"><i /><i /><i /><span>Living Life</span></div>
@@ -51,19 +69,21 @@ export default function Projects() {
         </Reveal>
         <div className="feature-pair">
           {selected.slice(1).map((project, index) => (
-            <Reveal as="article" key={project.title} className={`secondary-feature ${index === 0 ? "feature-madera" : "feature-baramos"}`}>
+            <Reveal as="article" key={project.title} delay={index * 100} className={`secondary-feature ${index === 0 ? "feature-madera" : "feature-gym"}`}>
               <div className="secondary-copy">
-                <p className="eyebrow">0{index + 2} / {index === 0 ? "Gastronomía · Proyecto ficticio" : "Presencia corporativa"}</p>
-                <h3>{index === 0 ? "Madera & Sal." : "Baramos Ingeniería."}</h3>
-                <p>{index === 0 ? "Una experiencia digital con carácter. Menú, galería y reservas simuladas." : "Una presencia clara para presentar los servicios de una empresa de ingeniería."}</p>
+                <p className="eyebrow">0{index + 2} / {caseStudies[project.title].context}</p>
+                <h3>{project.title}.</h3>
+                <p>{project.desc}</p>
+                <div className="tech-line">{project.tags.join(" · ")}</div>
                 <ProjectLinks project={project} />
+                <CaseStudy project={project} />
               </div>
               <div className="secondary-visual">
-                <button type="button" className="preview-button" onClick={() => showPreview(project, index === 0 ? "/projects/madera-y-sal.jpg" : project.img)} aria-label={`Ampliar captura de ${project.title}`}>
-                  <div className="browser-bar" aria-hidden="true"><i /><i /><i /><span>{index === 0 ? "madera-y-sal.vercel.app" : "baramosingenieria.net"}</span></div>
-                  <img src={index === 0 ? "/projects/madera-y-sal.jpg" : project.img} alt={`Portada completa de ${project.title}, sin recortar`} loading="lazy" width={index === 0 ? 1348 : 1885} height={index === 0 ? 926 : 990} />
+                {index === 0 ? <button type="button" className="preview-button" onClick={() => showPreview(project, "/projects/madera-y-sal.jpg")} aria-label={`Ampliar captura de ${project.title}`}>
+                  <div className="browser-bar" aria-hidden="true"><i /><i /><i /><span>madera-y-sal.vercel.app</span></div>
+                  <img src="/projects/madera-y-sal.jpg" alt="Portada completa de Madera & Sal" loading="lazy" width="1348" height="926" />
                   <span className="preview-hint"><ExpandIcon /> Ampliar vista</span>
-                </button>
+                </button> : <AppFlow />}
               </div>
             </Reveal>
           ))}
@@ -74,10 +94,12 @@ export default function Projects() {
             {["Todos", "Sitios web", "Aplicaciones"].map((filter) => <button key={filter} className={`filter-button ${category === filter ? "is-active" : ""}`} type="button" aria-pressed={category === filter} onClick={() => setCategory(filter)}>{filter}<span>{filter === "Todos" ? moreProjects.length : moreProjects.filter((project) => project.category === filter).length}</span></button>)}
           </div>
           <p className="sr-only" role="status">{filtered.length} proyectos · {category}</p>
-          <div className="project-catalog">
-            {filtered.map((project) => <Reveal as="article" className="catalog-project" key={project.title}>
+          <div className="project-catalog" key={category}>
+            {filtered.map((project, index) => <Reveal as="article" className="catalog-project" delay={(index % 2) * 90} key={project.title}>
               {project.img ? <button type="button" className="catalog-screenshot preview-button" onClick={() => showPreview(project, project.img)} aria-label={`Ampliar captura de ${project.title}`}><img src={project.img} alt={`Vista del sitio ${project.title}`} width="1893" height="998" loading="lazy" /></button> : <div className={`project-emblem emblem-${project.theme || "zyntex"}`} aria-hidden="true"><IconCode size={24} /></div>}
-              <div className="catalog-content"><p className="project-type">{project.label || project.category}</p><h4>{project.title}</h4><p className="catalog-description">{project.desc}</p><div className="tech-line">{project.tags.join(" · ")}</div><ProjectLinks project={project} /></div>
+              <div className="catalog-content"><p className="project-type">{project.context} · {project.label || project.category}</p><h4>{project.title}</h4><p className="catalog-description">{project.desc}</p>{project.title === "ACV2 Print" && <div className="catalog-flow" aria-label="Áreas funcionales de ACV2 Print"><span>Tablero de trabajos</span><span>Inventario</span><span>Roles e historial</span></div>}
+              {project.title === "SafeVault" && <div className="catalog-flow" aria-label="Componentes de seguridad de SafeVault"><span>JWT</span><span>Autorización por roles</span><span>Pruebas xUnit</span></div>}
+              <div className="tech-line">{project.tags.join(" · ")}</div><ProjectLinks project={project} /></div>
             </Reveal>)}
           </div>
         </div>

@@ -23,12 +23,9 @@ export default function Navbar() {
           <a className="wordmark" href="#top" onClick={() => setOpen(false)} aria-label="Elian Rodríguez, inicio">elian<span>.</span></a>
           <button ref={toggle} className={`nav-toggle ${open ? "is-open" : ""}`} type="button" aria-label={open ? "Cerrar menú" : "Abrir menú"} aria-expanded={open} aria-controls="primary-nav" onClick={() => setOpen(!open)}><span /><span /></button>
           <nav id="primary-nav" className={`nav-links ${open ? "is-open" : ""}`} aria-label="Navegación principal">
-            <a href="#about" onClick={() => setOpen(false)}>Sobre mí</a>
-            <a href="#skills" onClick={() => setOpen(false)}>Habilidades</a>
             <a href="#projects" onClick={() => setOpen(false)}>Proyectos</a>
+            <a href="#about" onClick={() => setOpen(false)}>Sobre mí</a>
             <a href="#experience" onClick={() => setOpen(false)}>Experiencia</a>
-            <a href="#certificaciones" onClick={() => setOpen(false)}>Formación</a>
-            <a href="#linkedin" onClick={() => setOpen(false)}>LinkedIn</a>
             <a className="nav-contact" href="#contact" onClick={() => setOpen(false)}>Hablemos <span aria-hidden="true">↗</span></a>
           </nav>
         </div>

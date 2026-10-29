@@ -32,3 +32,15 @@ Las capturas se muestran en su proporción original. La vista ampliada se cierra
 ## Vista del diseño
 
 ![Vista de los proyectos](docs/design-preview.jpg)
+
+## Calidad y publicación
+
+- Node.js 24 y `npm ci` para instalar las versiones del lockfile.
+- `npm run lint` y `npm run build` se ejecutan también en GitHub Actions.
+- `node_modules/`, `dist/` y los archivos de entorno locales no se versionan.
+- Los casos destacados se mantienen en `src/data/caseStudies.js`. Añadir roles, contexto de cliente y métricas solo cuando estén confirmados.
+- GymAI usa un esquema funcional identificado como tal hasta disponer de capturas reales.
+- Al confirmar el dominio de producción, usar URLs absolutas para `og:image` y `twitter:image` en `index.html` y añadir `og:url` y un enlace canonical. No se presupone un dominio de despliegue.
+- La imagen social está en `public/social-preview.png` y el favicon en `public/favicon.svg`.
+
+Comprobación manual: recorrer el sitio con teclado, abrir y cerrar capturas con Escape, filtrar proyectos, desplegar casos y formación, revisar menú móvil y preferencia de movimiento reducido. Revisar los enlaces externos y el CV antes de publicar.

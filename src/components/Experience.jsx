@@ -1,8 +1,8 @@
 import Reveal from "./Reveal";
 
 const experience = [
-  { company: "Ricoh Dominicana", role: "Operador Técnico", time: "Mayo 2025 — Actual", current: true, bullets: ["Operación y control de equipos tecnológicos.", "Cumplimiento de procedimientos operativos y estándares de calidad.", "Trabajo coordinado con equipos técnicos y administrativos."] },
-  { company: "OPITEL", role: "Soporte Técnico", time: "Junio 2024 — Diciembre 2024", bullets: ["Soporte a usuarios en entornos de hardware y software.", "Diagnóstico y resolución de incidencias técnicas.", "Mantenimiento y configuración de sistemas."] },
+  { company: "Ricoh Dominicana", role: "Operador Técnico", time: "Mayo 2025 — Actual", current: true, bullets: ["Operación y control de equipos tecnológicos dentro de los procedimientos del servicio.", "Aplicación de procedimientos operativos y estándares de calidad en el trabajo diario.", "Coordinación con personal técnico y administrativo para las tareas del servicio."] },
+  { company: "OPITEL", role: "Soporte Técnico", time: "Junio 2024 — Diciembre 2024", bullets: ["Atención a usuarios con incidencias de hardware y software.", "Diagnóstico de fallos y resolución de incidencias técnicas de los usuarios.", "Mantenimiento y configuración de sistemas como parte del soporte técnico."] },
 ];
 
 export default function Experience() {

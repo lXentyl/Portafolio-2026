@@ -5,11 +5,11 @@ export default function Hero() {
     <section id="top" className="hero">
       <div className="container hero-copy">
         <p className="eyebrow hero-enter">Elian Rodríguez · Desarrollo & tecnología</p>
-        <h1 className="hero-enter">Ideas que funcionan.<br /><span className="gradient-text">Detalles que importan.</span></h1>
-        <p className="hero-intro hero-enter">Desarrollo para la web. Conecto datos.<br className="desktop-break" /> Y pongo a las personas en el centro de cada solución.</p>
+        <h1 className="hero-enter">Desarrollo web.<br /><span className="gradient-text">Soluciones con propósito.</span></h1>
+        <p className="hero-intro hero-enter">Desarrollador web enfocado en React, aplicaciones y bases de datos. Construyo interfaces y soluciones para personas y negocios.</p>
         <div className="hero-actions hero-enter">
           <a className="button button-primary" href="#projects">Explorar proyectos <span aria-hidden="true">↗</span></a>
-          <a className="text-link" href="#about">Conóceme <span aria-hidden="true">↗</span></a>
+          <a className="text-link" href="/cv.pdf" target="_blank" rel="noreferrer">Ver CV <span aria-hidden="true">↗</span></a>
         </div>
       </div>
       <div className="hero-showcase hero-enter">
