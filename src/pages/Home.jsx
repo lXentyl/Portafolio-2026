@@ -1,3 +1,4 @@
+import MotionEffects from "../components/MotionEffects";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Projects from "../components/Projects";
@@ -10,5 +11,5 @@ import LinkedIn from "../components/LinkedIn";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  return <><Navbar /><main id="main-content"><Hero /><Projects /><About /><Skills /><Experience /><Certifications /><LinkedIn /><Contact /></main><Footer /></>;
+  return <><MotionEffects /><Navbar /><main id="main-content"><Hero /><Projects /><About /><Skills /><Experience /><Certifications /><LinkedIn /><Contact /></main><Footer /></>;
 }

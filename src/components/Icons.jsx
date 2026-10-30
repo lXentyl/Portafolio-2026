@@ -140,3 +140,7 @@ export function IconLinkedIn({ size = 24 }) {
     </svg>
   );
 }
+
+export function IconArrow({ size = 16 }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}

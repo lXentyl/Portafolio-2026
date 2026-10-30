@@ -1,3 +1,4 @@
+import { IconArrow } from "./Icons";
 import { useEffect, useRef, useState } from "react";
 import { projects } from "../data/projects";
 import { IconGithub, IconCode } from "./Icons";
@@ -14,7 +15,7 @@ function ExpandIcon() {
 
 function ProjectLinks({ project }) {
   return <div className="project-links">
-    {project.link && <a className="text-link" href={project.link} target="_blank" rel="noreferrer" aria-label={`Visitar ${project.title}`}>Ver sitio <span aria-hidden="true">↗</span></a>}
+    {project.link && <a className="text-link" href={project.link} target="_blank" rel="noreferrer" aria-label={`Visitar ${project.title}`}>Ver sitio <span aria-hidden="true"><IconArrow /></span></a>}
     {project.repo && <a className="code-link" href={`https://github.com/lXentyl/${project.repo}`} target="_blank" rel="noreferrer" aria-label={`Ver código de ${project.title}`}><IconGithub size={16} /> Código</a>}
   </div>;
 }
@@ -23,7 +24,7 @@ function CaseStudy({ project }) {
   const study = caseStudies[project.title];
   return <details className="case-study">
     <summary>Explorar el caso <span aria-hidden="true">+</span></summary>
-    <dl><div><dt>Objetivo</dt><dd>{study.objective}</dd></div><div><dt>Solución técnica</dt><dd>{study.approach}</dd></div><div><dt>Qué puedes explorar</dt><dd>{study.result}</dd></div></dl>
+    <dl><div><dt><span aria-hidden="true">01 / </span>Objetivo</dt><dd>{study.objective}</dd></div><div><dt><span aria-hidden="true">02 / </span>Solución técnica</dt><dd>{study.approach}</dd></div><div><dt><span aria-hidden="true">03 / </span>Qué puedes explorar</dt><dd>{study.result}</dd></div></dl>
   </details>;
 }
 
@@ -61,7 +62,7 @@ export default function Projects() {
             <ProjectLinks project={selected[0]} />
             <CaseStudy project={selected[0]} />
           </div>
-          <button type="button" className="feature-browser preview-button" onClick={() => showPreview(selected[0], "/projects/living-life.jpg")} aria-label="Ampliar captura de Living Life">
+          <button type="button" className="feature-browser preview-button depth-surface" onClick={() => showPreview(selected[0], "/projects/living-life.jpg")} aria-label="Ampliar captura de Living Life">
             <div className="browser-bar" aria-hidden="true"><i /><i /><i /><span>Living Life</span></div>
             <img src="/projects/living-life.jpg" alt="Vista completa de la portada del sitio web Living Life" loading="lazy" width="1357" height="932" />
             <span className="preview-hint"><ExpandIcon /> Ampliar vista</span>
@@ -79,7 +80,7 @@ export default function Projects() {
                 <CaseStudy project={project} />
               </div>
               <div className="secondary-visual">
-                {index === 0 ? <button type="button" className="preview-button" onClick={() => showPreview(project, "/projects/madera-y-sal.jpg")} aria-label={`Ampliar captura de ${project.title}`}>
+                {index === 0 ? <button type="button" className="preview-button depth-surface" onClick={() => showPreview(project, "/projects/madera-y-sal.jpg")} aria-label={`Ampliar captura de ${project.title}`}>
                   <div className="browser-bar" aria-hidden="true"><i /><i /><i /><span>madera-y-sal.vercel.app</span></div>
                   <img src="/projects/madera-y-sal.jpg" alt="Portada completa de Madera & Sal" loading="lazy" width="1348" height="926" />
                   <span className="preview-hint"><ExpandIcon /> Ampliar vista</span>
@@ -108,7 +109,7 @@ export default function Projects() {
         {preview && <>
           <div className="image-preview-header"><div><h3 id="image-preview-title">{preview.project.title}</h3><p>Vista real del proyecto</p></div><button type="button" className="image-preview-close" onClick={closePreview} aria-label="Cerrar vista ampliada"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" /></svg></button></div>
           <div className="image-preview-content"><img src={preview.src} alt={`Captura completa de ${preview.project.title}`} /></div>
-          <div className="image-preview-footer"><span>Captura completa en su proporción original.</span>{preview.project.link && <a className="text-link" href={preview.project.link} target="_blank" rel="noreferrer">Visitar sitio <span aria-hidden="true">↗</span></a>}</div>
+          <div className="image-preview-footer"><span>Captura completa en su proporción original.</span>{preview.project.link && <a className="text-link" href={preview.project.link} target="_blank" rel="noreferrer">Visitar sitio <span aria-hidden="true"><IconArrow /></span></a>}</div>
         </>}
       </dialog>
     </section>
